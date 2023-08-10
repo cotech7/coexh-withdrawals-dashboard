@@ -93,7 +93,7 @@ const App = () => {
   return (
     <>
       <div>
-        <h1>Dafa withdrawals</h1>
+        <h1>CoExchange withdrawals</h1>
         <button
           className="action-button"
           onClick={() => window.location.reload()}

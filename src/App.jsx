@@ -89,16 +89,6 @@ const App = () => {
     }
   };
 
-  // const refreshData = async () => {
-  //   try {
-  //     if (token) {
-  //       await fetchUsers(token);
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
   const refreshData = async () => {
     try {
       if (token) {
@@ -139,13 +129,7 @@ const App = () => {
   return (
     <>
       <div>
-        <h1>Dafa withdrawals</h1>
-        {/* <button
-          className="action-button"
-          onClick={refreshData} // onClick={() => window.location.reload()}
-        >
-          Refresh
-        </button> */}
+        <h1>CoExchange withdrawals</h1>
         <button
           className={`action-button ${isRefreshing ? "refreshing-button" : ""}`}
           onClick={refreshData}

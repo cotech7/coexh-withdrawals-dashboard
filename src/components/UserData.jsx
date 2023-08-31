@@ -73,13 +73,13 @@ const UserData = ({ users, token, path, refreshData }) => {
       if (response.status !== 200) {
         throw new Error("Request failed with status: " + response.status);
       } else if (response.data.status === 1) {
-        console.log(`amount:${amount} remark:${remark}`);
-        console.log(JSON.stringify(response.data));
+        // console.log(`amount:${amount} remark:${remark}`);
+        // console.log(JSON.stringify(response.data));
         // alert("Withdrawal successfully!");
         handleModalSuccess();
         // showSuccessAlertAndReload();
       } else {
-        console.log(response);
+        // console.log(response);
         throw new Error("Invalid response data format");
       }
     } catch (error) {
@@ -118,7 +118,7 @@ const UserData = ({ users, token, path, refreshData }) => {
       if (response.status !== 200) {
         throw new Error("Request failed with status: " + response.status);
       } else if (response.data.status === 1) {
-        console.log(response.data);
+        // console.log(response.data);
         // alert("Request Rejected");
         handleModalSuccess();
         // showSuccessAlertAndReload();

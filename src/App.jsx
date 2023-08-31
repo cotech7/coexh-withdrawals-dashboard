@@ -7,6 +7,7 @@ const App = () => {
   const [users, setUsers] = useState([]);
   const [token, setToken] = useState(null);
   const [path, setPath] = useState();
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
   const login = async () => {
     try {
@@ -88,6 +89,30 @@ const App = () => {
     }
   };
 
+  // const refreshData = async () => {
+  //   try {
+  //     if (token) {
+  //       await fetchUsers(token);
+  //     }
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
+
+  const refreshData = async () => {
+    try {
+      if (token) {
+        setIsRefreshing(true); // Add this line to set the refreshing flag
+
+        await fetchUsers(token);
+
+        setIsRefreshing(false); // Clear the refreshing flag when done
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -114,12 +139,19 @@ const App = () => {
   return (
     <>
       <div>
-        <h1>CoExchange withdrawals</h1>
-        <button
+        <h1>Dafa withdrawals</h1>
+        {/* <button
           className="action-button"
-          onClick={() => window.location.reload()}
+          onClick={refreshData} // onClick={() => window.location.reload()}
         >
           Refresh
+        </button> */}
+        <button
+          className={`action-button ${isRefreshing ? "refreshing-button" : ""}`}
+          onClick={refreshData}
+          disabled={isRefreshing}
+        >
+          {isRefreshing ? "Refreshing..." : "Refresh"}
         </button>
       </div>
       <div className="table-container">
@@ -136,7 +168,12 @@ const App = () => {
             </tr>
           </thead>
           <tbody>
-            <UserData users={users} token={token} path={path} />
+            <UserData
+              users={users}
+              token={token}
+              path={path}
+              refreshData={refreshData}
+            />
           </tbody>
         </table>
       </div>

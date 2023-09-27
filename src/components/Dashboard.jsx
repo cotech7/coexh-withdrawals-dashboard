@@ -174,7 +174,7 @@ const Dashboard = ({ onLogout }) => {
   return (
     <>
       <div>
-        <h1>CoExchange withdrawals</h1>
+        <h1>CCCC withdrawals</h1>
         <button
           className={`action-button ${isRefreshing ? "refreshing-button" : ""}`}
           onClick={refreshData}

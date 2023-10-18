@@ -57,6 +57,28 @@ const Dashboard = ({ onLogout }) => {
     }
   };
 
+  const sendWhatsAppMessage = async (message) => {
+    try {
+      let data = JSON.stringify({
+        message: message,
+      });
+      let config = {
+        method: "post",
+        maxBodyLength: Infinity,
+        url: "https://five00-backend.onrender.com/api/requests/sendnotification",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+      const response = await axios.request(config);
+
+      console.log("WhatsApp message sent:", response.data);
+    } catch (error) {
+      console.error("Error sending WhatsApp message:", error);
+    }
+  };
+
   const fetchUsers = async (token) => {
     try {
       // console.log(token);
@@ -89,6 +111,12 @@ const Dashboard = ({ onLogout }) => {
       setUsers(response.data.data);
       setPath(response.data.path);
       // console.log(response.data.data);
+      let count = response.data.data.length;
+      if (count >= 10) {
+        await sendWhatsAppMessage(
+          `Withdrawal requests are pending in cccc : ${count}`
+        );
+      }
     } catch (e) {
       console.error(e);
     }
